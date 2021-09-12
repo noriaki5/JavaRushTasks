@@ -8,6 +8,7 @@ target/
 *.iml
 *.iws
 
+*.java
 *.class
 *.info
 *.properties
