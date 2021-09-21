@@ -11,6 +11,7 @@ public class MinesweeperGame extends Game {
     private static final int SIDE = 9;
     private GameObject[][] gameField = new GameObject[SIDE][SIDE];
     private int countMinesOnField;
+    private static final String MINE = "\uD83D\uDCA3";
 
     @Override
     public void initialize() {
@@ -72,5 +73,22 @@ public class MinesweeperGame extends Game {
 //                }
 //            }
 //        }
+    }
+
+    @Override
+    public void onMouseLeftClick(int x, int y) {
+        openTile(x, y);
+    }
+
+    private void openTile(int x, int y) {
+        GameObject gameObject = gameField[y][x];
+        if (gameObject.isMine) {
+            setCellValue(x, y, MINE);
+            setCellColor(x, y, Color.RED);
+        } else {
+            setCellNumber(x, y, gameObject.countMineNeighbors);
+            setCellColor(x, y, Color.GREEN);
+        }
+        gameObject.isOpen = true;
     }
 }
