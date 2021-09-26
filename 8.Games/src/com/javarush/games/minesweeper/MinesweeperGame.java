@@ -33,11 +33,11 @@ public class MinesweeperGame extends Game {
                 }
                 gameField[y][x] = new GameObject(x, y, isMine);
                 setCellColor(x, y, Color.ORANGE);
+                setCellValue(x, y, "");
             }
         }
         countMineNeighbors();
         countFlags = countMinesOnField;
-        isGameStopped = false;
     }
 
     private List<GameObject> getNeighbors(GameObject gameObject) {
@@ -84,7 +84,11 @@ public class MinesweeperGame extends Game {
 
     @Override
     public void onMouseLeftClick(int x, int y) {
-        openTile(x, y);
+        if (isGameStopped) {
+            restart();
+        } else {
+            openTile(x, y);
+        }
     }
 
     @Override
@@ -142,5 +146,14 @@ public class MinesweeperGame extends Game {
     private void win() {
         isGameStopped = true;
         showMessageDialog(Color.GOLD, "You win!", Color.BLACK, 40);
+    }
+
+    private void restart() {
+        isGameStopped = false;
+        countClosedTiles = SIDE * SIDE;
+        score = 0;
+        setScore(score);
+        countMinesOnField = 0;
+        createGame();
     }
 }
