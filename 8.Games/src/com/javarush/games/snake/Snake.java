@@ -10,6 +10,7 @@ public class Snake {
     private static final String HEAD_SIGN = "\uD83D\uDC7E";
     private static final String BODY_SIGN = "\u26AB";
     public boolean isAlive = true;
+
     private Direction direction = Direction.LEFT;
 
     public Snake(int x, int y) {
@@ -27,6 +28,15 @@ public class Snake {
     }
 
     public void setDirection(Direction direction) {
+        if (direction == Direction.LEFT && this.direction == Direction.RIGHT) {
+            return;
+        } else if (direction == Direction.UP && this.direction == Direction.DOWN) {
+            return;
+        } else if (direction == Direction.RIGHT && this.direction == Direction.LEFT) {
+            return;
+        } else if (direction == Direction.DOWN && this.direction == Direction.UP) {
+            return;
+        }
         this.direction = direction;
     }
 
