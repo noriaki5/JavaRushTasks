@@ -55,11 +55,15 @@ public class SnakeGame extends Game {
             snake.setDirection(Direction.RIGHT);
         } else if (key == Key.DOWN) {
             snake.setDirection(Direction.DOWN);
+        } else if (key == Key.SPACE && isGameStopped) {
+            createGame();
         }
     }
 
     private void createNewApple() {
-        apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
+        do {
+            apple = new Apple(getRandomNumber(WIDTH), getRandomNumber(HEIGHT));
+        } while (snake.checkCollision(apple));
     }
 
     private void gameOver() {
