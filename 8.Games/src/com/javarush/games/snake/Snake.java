@@ -37,6 +37,15 @@ public class Snake {
         } else if (direction == Direction.DOWN && this.direction == Direction.UP) {
             return;
         }
+        if (this.direction == Direction.LEFT && snakeParts.get(0).x == snakeParts.get(1).x) {
+            return;
+        } else if (this.direction == Direction.UP && snakeParts.get(0).y == snakeParts.get(1).y) {
+            return;
+        } else if (this.direction == Direction.RIGHT && snakeParts.get(0).x == snakeParts.get(1).x) {
+            return;
+        } else if (this.direction == Direction.DOWN && snakeParts.get(0).y == snakeParts.get(1).y) {
+            return;
+        }
         this.direction = direction;
     }
 
