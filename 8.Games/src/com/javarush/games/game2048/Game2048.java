@@ -14,14 +14,66 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
-
+        createNewNumber();
+        createNewNumber();
     }
 
     private void drawScene() {
         for (int i = 0; i < SIDE; i++) {
             for (int j = 0; j < SIDE; j++) {
-                setCellColor(i, j, Color.AQUA);
+                setCellColoredNumber(i, j, gameField[j][i]);
             }
         }
+    }
+
+    private void createNewNumber() {
+        int x,y;
+        do {
+            x = getRandomNumber(SIDE);
+            y = getRandomNumber(SIDE);
+        } while (gameField[x][y] != 0);
+
+        int newNumber = getRandomNumber(10);
+        if (newNumber == 9) {
+            gameField[x][y] = 4;
+        } else {
+            gameField[x][y] = 2;
+        }
+    }
+
+    private Color getColorByValue(int value) {
+        if (value == 2) {
+            return Color.PINK;
+        } else if (value == 4) {
+            return Color.PURPLE;
+        } else if (value == 8) {
+            return Color.BLUE;
+        } else if (value == 16) {
+            return Color.CYAN;
+        } else if (value == 32) {
+            return Color.DARKGREEN;
+        } else if (value == 64) {
+            return Color.GREEN;
+        } else if (value == 128) {
+            return Color.ORANGE;
+        } else if (value == 256) {
+            return Color.PEACHPUFF;
+        } else if (value == 512) {
+            return Color.ORANGERED;
+        } else if (value == 1024) {
+            return Color.DEEPPINK;
+        } else if (value == 2048) {
+            return Color.HOTPINK;
+        }
+        return Color.WHITE;
+    }
+
+    private void setCellColoredNumber(int x, int y, int value) {
+        if (value == 0) {
+            setCellValueEx(x, y, getColorByValue(value), "");
+        } else {
+            setCellValueEx(x, y, getColorByValue(value), String.valueOf(value));
+        }
+
     }
 }
