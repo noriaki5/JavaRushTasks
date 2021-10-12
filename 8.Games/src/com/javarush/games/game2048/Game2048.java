@@ -76,4 +76,20 @@ public class Game2048 extends Game {
         }
 
     }
+
+    private boolean compressRow(int[] row) {
+        int insertPosition = 0;
+        boolean result = false;
+        for (int i = 0; i < row.length; i++) {
+            if (row[i] > 0) {
+                if (i != insertPosition) {
+                    row[insertPosition] = row[i];
+                    row[i] = 0;
+                    result = true;
+                }
+                insertPosition++;
+            }
+        }
+        return result;
+    }
 }
