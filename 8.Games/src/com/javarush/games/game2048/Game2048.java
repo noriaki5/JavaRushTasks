@@ -146,4 +146,14 @@ public class Game2048 extends Game {
     private void moveDown() {
 
     }
+
+    private void rotateClockwise() {
+        int[][] matrix = new int[SIDE][SIDE];
+        for (int i = 0; i < SIDE; i++) {
+            for (int j = 0; j < SIDE; j++) {
+                matrix[j][SIDE - 1 - i] = gameField[i][j];
+            }
+        }
+        gameField = matrix;
+    }
 }
