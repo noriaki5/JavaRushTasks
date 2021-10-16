@@ -15,6 +15,11 @@ public class Game2048 extends Game {
     }
 
     private void createGame() {
+        for (int i = 0; i < SIDE; i++) {
+            for (int j = 0; j < SIDE; j++) {
+                gameField[i][j] = 0;
+            }
+        }
         createNewNumber();
         createNewNumber();
     }
@@ -113,6 +118,14 @@ public class Game2048 extends Game {
 
     @Override
     public void onKeyPress(Key key) {
+        if (isGameStopped) {
+            if (key == Key.SPACE) {
+                isGameStopped = false;
+                createGame();
+                drawScene();
+            }
+            return;
+        }
         if (!canUserMove()) {
             gameOver();
             return;
