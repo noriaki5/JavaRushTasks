@@ -31,6 +31,30 @@ public class MoonLanderGame extends Game {
         }
     }
 
+    @Override
+    public void onKeyPress(Key key) {
+        if (key == Key.UP) {
+            isUpPressed = true;
+        } else if (key == Key.LEFT) {
+            isLeftPressed = true;
+            isRightPressed = false;
+        } else if (key == Key.RIGHT) {
+            isRightPressed = true;
+            isLeftPressed = false;
+        }
+    }
+
+    @Override
+    public void onKeyReleased(Key key) {
+        if (key == Key.UP) {
+            isUpPressed = false;
+        } else if (key == Key.LEFT) {
+            isLeftPressed = false;
+        } else if (key == Key.RIGHT) {
+            isRightPressed = false;
+        }
+    }
+
     private void createGame() {
         createGameObjects();
         drawScene();
