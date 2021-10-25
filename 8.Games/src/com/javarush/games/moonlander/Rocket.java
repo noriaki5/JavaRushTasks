@@ -55,6 +55,10 @@ public class Rocket extends GameObject {
         y -= 1;
     }
 
+    public void crash() {
+        matrix = ShapeMatrix.ROCKET_CRASH;
+    }
+
     public boolean isStopped() {
         return speedY < 10 * boost;
     }
