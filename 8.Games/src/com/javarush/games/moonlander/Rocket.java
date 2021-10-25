@@ -51,6 +51,10 @@ public class Rocket extends GameObject {
         }
     }
 
+    public void land() {
+        y -= 1;
+    }
+
     public boolean isStopped() {
         return speedY < 10 * boost;
     }
