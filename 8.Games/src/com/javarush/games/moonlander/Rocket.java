@@ -44,6 +44,13 @@ public class Rocket extends GameObject {
         }
         x += speedX;
         checkBorders();
+        switchFire(isUpPressed);
+    }
+
+    @Override
+    public void draw(Game game) {
+        super.draw(game);
+        downFire.draw(game);
     }
 
     private void checkBorders() {
@@ -90,5 +97,15 @@ public class Rocket extends GameObject {
             }
         }
         return false;
+    }
+
+    private void switchFire(boolean isUpPressed) {
+        if (isUpPressed) {
+            downFire.x = x + width / 2;
+            downFire.y = y + height;
+            downFire.show();
+        } else {
+            downFire.hide();
+        }
     }
 }
